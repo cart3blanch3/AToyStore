@@ -1,0 +1,81 @@
+/* src/components/ProductList.css */
+
+.product-list {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.product-card {
+    width: 280px; /* Ширина карточки */
+    border: 3px solid #FFDEE1; /* Нежная розовая граница */
+    border-radius: 12px; /* Закругленные углы */
+    padding: 20px; /* Внутренний отступ */
+    text-align: left;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень */
+    background-color: #FFFFFF; /* Белый цвет фона карточки */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавный переход */
+    position: relative; /* Для позиционирования кнопки */
+    display: flex;
+    flex-direction: column; /* Выравнивание содержимого по колонке */
+}
+
+.product-card:hover {
+    transform: scale(1.05); /* Легкое увеличение при наведении */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Более глубокая тень при наведении */
+}
+
+.product-image {
+    width: 100%;
+    height: 200px; /* Высота изображения */
+    object-fit: contain; /* Сохранение пропорций изображения */
+    border-radius: 8px;
+    background-color: #F9F9F9; /* Цвет фона для изображений, если они меньше */
+}
+
+.product-details {
+    margin-top: 15px;
+    flex: 1; /* Растягиваем детали на доступное пространство */
+}
+
+.product-details h2 {
+    font-size: 20px; /* Размер шрифта заголовка */
+    margin: 0 0 10px 0;
+    color: #FFB6C1; /* Нежный розовый цвет заголовка */
+    text-align: left; /* Выровнять заголовок по левому краю */
+}
+
+.product-price {
+    font-size: 24px; /* Размер шрифта для цены */
+    font-weight: bold;
+    color: #FFB6C1; /* Светло-розовый цвет для цены */
+    margin: 10px 0;
+}
+
+.add-to-cart-button {
+    width: 100%; /* Ширина кнопки по всей карточке */
+    margin-top: auto; /* Отодвигаем кнопку вниз */
+    padding: 12px 0; /* Увеличиваем отступы */
+    font-size: 16px;
+    color: #FFFFFF; /* Белый цвет текста кнопки */
+    background-color: #FFB6C1; /* Нежно-розовый фон кнопки */
+    border: none;
+    border-radius: 8px; /* Закругленные углы кнопки */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: #FF9B9B; /* Чуть темнее розовый при наведении */
+    transform: scale(1.02); /* Легкое увеличение кнопки при наведении */
+}
+
+.add-to-cart-button:active {
+    background-color: #FF6F6F; /* Более насыщенный розовый при нажатии */
+}

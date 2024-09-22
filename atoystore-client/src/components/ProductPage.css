@@ -1,0 +1,98 @@
+/* src/components/ProductPage.css */
+
+.product-page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.product-page-content {
+    background-color: #fff;
+    padding: 20px; /* Uniform padding for better layout */
+    border-radius: 12px;
+    max-width: 800px; /* Adjusted for product details */
+    width: 100%;
+    position: relative;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box; /* Include padding and border in width */
+}
+
+.product-page-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #FFB6C1; /* Light pink background */
+    color: #FFFFFF; /* White color for the cross */
+    border: none;
+    font-size: 24px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%; /* Rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 1001; /* Ensure it's above the content */
+}
+
+.product-page-close-button:hover {
+    background-color: #FF9B9B; /* Slightly darker pink on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.product-page-close-button:active {
+    background-color: #FF6F6F; /* Even darker pink when clicked */
+}
+
+.product-page-image {
+    width: 100%;
+    max-width: 500px; /* Limit the image size */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-page-details {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.product-page-details h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    align-items: start;
+}
+
+.product-page-price {
+    font-size: 1.5rem;
+    color: #FF8C8C; /* Soft pink color for price */
+    margin-bottom: 10px;
+}
+
+.product-page-description {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.add-to-cart-button {
+    background-color: #FFB6C1; /* Light pink background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.add-to-cart-button:hover {
+    background-color: #FF9B9B; /* Slightly darker pink on hover */
+}

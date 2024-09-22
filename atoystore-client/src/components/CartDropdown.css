@@ -1,0 +1,107 @@
+.cart-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-icon {
+    color: #fff; /* Белый цвет иконки */
+    background: none;
+    border: none;
+    font-size: 24px; /* Размер иконки */
+    cursor: pointer;
+    position: relative;
+}
+
+.item-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+}
+
+.cart-dropdown-content {
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 300px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1000;
+}
+
+.cart-dropdown-content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+}
+
+.cart-item-name {
+    display: block;
+    font-weight: bold;
+}
+
+.cart-item-price {
+    display: block;
+    color: #333;
+}
+
+.cart-item-quantity {
+    display: block;
+    color: #666;
+}
+
+.remove-button {
+    background: #FFB6C1 !important; /* Нежно-розовый фон кнопки удаления */
+    color: #FFFFFF !important; /* Белый цвет текста кнопки удаления */
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px; /* Скругленные углы для кнопки удаления */
+    font-size: 14px; /* Размер текста кнопки удаления */
+    margin-left: 10px; /* Отступ слева для кнопки удаления */
+}
+
+.remove-button:hover {
+    background-color: #FF9B9B !important; /* Тёмно-розовый цвет при наведении */
+}
+
+.checkout-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #FFB6C1 !important; /* Нежно-розовый фон кнопки оформления заказа */
+    color: #FFFFFF !important; /* Белый цвет текста кнопки оформления заказа */
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 4px; /* Скругленные углы для кнопки оформления заказа */
+    font-size: 16px; /* Размер текста кнопки оформления заказа */
+}
+
+.checkout-button:hover {
+    background-color: #FF9B9B !important; /* Тёмно-розовый цвет при наведении */
+}

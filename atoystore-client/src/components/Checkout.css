@@ -1,0 +1,127 @@
+/* Checkout.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #FF8C8C; /* Soft pink color for headings */
+    margin-top: 20px;
+}
+
+h2, h3 {
+    color: #FF8C8C; /* Soft pink color for subheadings */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #FF8C8C; /* Soft pink color for table headers */
+    color: #fff; /* White text for table headers */
+}
+
+table td {
+    color: #FFB6C1; /* Light pink color for table cell text */
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table img {
+    max-width: 100px;
+    height: auto;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #FFB6C1; /* Light pink color for form labels */
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #FF8C8C; /* Soft pink color for form borders */
+    border-radius: 4px;
+}
+
+form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+form button {
+    background-color: #FFB6C1; /* Light pink color for buttons */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: #FF8C8C; /* Soft pink color for button hover effect */
+}
+
+.error-message {
+    color: #FF4C4C; /* Red color for error messages */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Стиль для кнопки удаления */
+.delete-button {
+    width: 40%;
+    margin-top: auto; /* Отодвигаем кнопку вниз */
+    padding: 12px 0; /* Увеличиваем отступы */
+    font-size: 16px; /* Размер шрифта */
+    color: #FFFFFF; /* Белый цвет текста кнопки */
+    background-color: #FFB6C1; /* Нежно-розовый фон кнопки */
+    border: none; /* Без границ */
+    border-radius: 8px; /* Закругленные углы кнопки */
+    cursor: pointer; /* Указатель в виде руки */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Плавный переход цвета фона и эффекта увеличения */
+}
+
+/* Состояние наведения для кнопки удаления */
+.delete-button:hover {
+    background-color: #FF9B9B; /* Чуть темнее розовый при наведении */
+    transform: scale(1.02); /* Легкое увеличение кнопки при наведении */
+}
+
+/* Состояние нажатия для кнопки удаления */
+.delete-button:active {
+    background-color: #FF6F6F; /* Более насыщенный розовый при нажатии */
+}

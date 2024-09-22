@@ -1,0 +1,75 @@
+
+
+body {
+  background-color: #F8F8F8;  
+  color: #333333; 
+  margin: 0;
+  font-family: 'Roboto', sans-serif;  
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Comfortaa', cursive;  
+  color: #FF8C8C;  
+}
+
+p, span {
+  color: #FFB6C1;  
+}
+
+a, li {
+  text-decoration: none;
+  color: inherit; 
+}
+
+a:focus, a:hover {
+  outline: none; 
+  color: inherit; 
+}
+
+button {
+  margin-top: auto; 
+  padding: 12px 0;
+  font-size: 16px;
+  color: #FFFFFF; 
+  background-color: #FFB6C1;
+  border: none; 
+  border-radius: 8px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease; 
+}
+
+button:hover {
+  background-color: #FF9B9B; 
+  transform: scale(1.02); 
+}
+
+button:active {
+  background-color: #FF6F6F; 
+}
+
+input, textarea, select {
+  width: 100%;  
+  padding: 10px; 
+  margin: 8px 0;  
+  border: 1px solid #FFB6C1;  
+  border-radius: 5px;  
+  font-size: 16px;  
+  font-family: 'Roboto', sans-serif;  
+  color: #333;  
+  background-color: #FFF; 
+  transition: border-color 0.3s ease;  
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none; 
+  border-color: #FF8C8C;  
+}
+
+::placeholder {
+  color: #FFB6C1; 
+  opacity: 1;  
+}

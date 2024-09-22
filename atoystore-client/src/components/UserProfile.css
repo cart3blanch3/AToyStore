@@ -1,0 +1,79 @@
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    font-family: 'Comfortaa', cursive;
+    color: #FF8C8C;
+    margin-bottom: 20px;
+}
+
+p, ul li {
+    font-size: 16px;
+    color: #FFB6C1; 
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #FF8C8C; 
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 20px;
+    color: #FF8C8C;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 18px;
+    color: #FF8C8C;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none; 
+    padding: 0;
+}
+
+.order-items li {
+    margin-bottom: 5px; 
+}
+
+.profile-container img {
+    max-width: 100px;
+    margin-right: 10px;
+}
+
+.profile-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.profile-container th, .profile-container td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.profile-container th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.profile-container td {
+    background-color: #fff;
+    color: #333;
+}
+
+.profile-container .order-summary {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #FFB6C1; 
+}
