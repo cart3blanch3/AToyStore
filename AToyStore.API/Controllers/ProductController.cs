@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization; 
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace AToyStore.API.Controllers
 {
     [ApiController]
@@ -13,11 +14,13 @@ namespace AToyStore.API.Controllers
     {
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public ProductsController(IProductService productService, IMapper mapper)
+        public ProductsController(IProductService productService, IMapper mapper, IWebHostEnvironment hostingEnvironment)
         {
             _productService = productService;
             _mapper = mapper;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [HttpGet("{id}")]
@@ -44,12 +47,34 @@ namespace AToyStore.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")] 
-        public async Task<IActionResult> Add([FromBody] ProductCreateDto request)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Add([FromForm] ProductCreateDto request)
         {
-            var product = _mapper.Map<Product>(request);
-            var productId = await _productService.AddAsync(product);
-            return CreatedAtAction(nameof(GetById), new { id = productId }, new { id = productId });
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            string imageUrl = null; 
+
+            // Путь к каталогу для сохранения изображений
+            var imagePath = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+            if (request.Image != null && request.Image.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(request.Image.FileName); 
+                var filePath = Path.Combine(imagePath, fileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await request.Image.CopyToAsync(fileStream);
+                }
+
+                imageUrl = "/images/" + fileName; 
+            }
+
+            var product = new Product(request.Name, request.Description, request.Price, 0, imageUrl);
+            await _productService.AddAsync(product);
+
+            return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
         }
 
         [HttpPut("{id}")]

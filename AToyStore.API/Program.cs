@@ -14,8 +14,17 @@ using System.Text;
 using AToyStore.API.Initializers.AToyStore.API.Initializers;
 using AToyStore.Application.Interfaces;
 using AToyStore.Application.Settings;
+using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<FormOptions>(x =>
+{
+    x.ValueLengthLimit = int.MaxValue;
+    x.MultipartBodyLengthLimit = int.MaxValue;  
+    x.MemoryBufferThreshold = int.MaxValue;
+});
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
