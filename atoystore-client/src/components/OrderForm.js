@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { createOrder, updateOrder } from '../services/orderService'; // Import functions from your controller
+import { createOrder, updateOrder } from '../services/orderService'; 
+import InputMask from 'react-input-mask';
 
 const OrderForm = ({ order, onSave, token }) => {
     const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const OrderForm = ({ order, onSave, token }) => {
         comment: '',
         orderItems: []
     });
+    const [phoneError, setPhoneError] = useState('');
 
     useEffect(() => {
         if (order) {
@@ -33,11 +35,10 @@ const OrderForm = ({ order, onSave, token }) => {
     };
 
     const handleItemChange = (index, e) => {
-        const { value } = e.target;
         const updatedItems = [...formData.orderItems];
         updatedItems[index] = {
             ...updatedItems[index],
-            quantity: value // Only allow quantity change
+            quantity: e.target.value 
         };
         setFormData((prevData) => ({
             ...prevData,
@@ -53,19 +54,39 @@ const OrderForm = ({ order, onSave, token }) => {
         }));
     };
 
+    const handlePhoneChange = (e) => {
+        const { value } = e.target;
+        if (validatePhoneNumber(value)) {
+            setPhoneError('');
+            setFormData((prevData) => ({
+                ...prevData,
+                customerPhone: value
+            }));
+        } else {
+            setPhoneError('Введите корректный номер телефона в формате +7 (7XX) XXX-XX-XX');
+        }
+    };
+
+    const validatePhoneNumber = (number) => {
+        const phonePattern = /^\+7 \(7\d{2}\) \d{3}-\d{2}-\d{2}$/;
+        return phonePattern.test(number);
+    };
+
     const handleSave = async (e) => {
         e.preventDefault();
-        try {
-            if (formData.id) {
-                // Update order
-                await updateOrder(formData.id, formData, token);
-            } else {
-                // Create new order
-                await createOrder(formData, token);
+        if (!phoneError && validatePhoneNumber(formData.customerPhone)) {
+            try {
+                if (formData.id) {
+                    await updateOrder(formData.id, formData, token);
+                } else {
+                    await createOrder(formData, token);
+                }
+                onSave(); 
+            } catch (error) {
+                console.error(error);
             }
-            onSave(); // Call onSave to refresh the order list
-        } catch (error) {
-            console.error(error);
+        } else {
+            setPhoneError('Проверьте правильность введенного номера телефона.');
         }
     };
 
@@ -78,18 +99,21 @@ const OrderForm = ({ order, onSave, token }) => {
                     name="customerName"
                     value={formData.customerName}
                     onChange={handleChange}
+                    maxLength="50" 
                     required
                 />
             </div>
             <div>
                 <label>Телефон клиента:</label>
-                <input
-                    type="tel"
-                    name="customerPhone"
+                <InputMask
+                    mask="+7 (999) 999-99-99"
+                    placeholder="+7 (7XX) XXX-XX-XX"
                     value={formData.customerPhone}
-                    onChange={handleChange}
+                    onChange={handlePhoneChange}
+                    className="input"
                     required
                 />
+                {phoneError && <div className="error-message">{phoneError}</div>}
             </div>
             <div>
                 <label>Адрес:</label>
@@ -98,6 +122,7 @@ const OrderForm = ({ order, onSave, token }) => {
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
+                    maxLength="200" 
                     required
                 />
             </div>
@@ -107,6 +132,7 @@ const OrderForm = ({ order, onSave, token }) => {
                     name="comment"
                     value={formData.comment}
                     onChange={handleChange}
+                    maxLength="500" 
                 />
             </div>
             <div>
@@ -122,7 +148,7 @@ const OrderForm = ({ order, onSave, token }) => {
                             min="1"
                             required
                         />
-                        <span>Цена: {item.unitPrice}</span> {/* Display price without editing */}
+                        <span>Цена: {item.unitPrice}</span>
                         <button type="button" onClick={() => handleRemoveItem(index)}>Удалить</button>
                     </div>
                 ))}

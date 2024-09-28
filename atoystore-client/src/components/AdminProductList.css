@@ -1,35 +1,30 @@
-/* AdminProductList.css */
-
-/* Основной контейнер страницы */
 .admin-product-list-container {
     padding: 20px;
     text-align: center;
 }
 
-/* Кнопка добавления товара слева */
 .admin-add-product-button {
     display: inline-block;
-    padding: 12px 24px; /* Увеличенные отступы для кнопки */
+    padding: 12px 24px; 
     font-size: 18px;
-    color: #FFFFFF; /* Белый цвет текста кнопки */
-    background-color: #FFB6C1; /* Нежно-розовый фон кнопки */
+    color: #FFFFFF; 
+    background-color: #FFB6C1; 
     border: none;
-    border-radius: 8px; /* Закругленные углы кнопки */
+    border-radius: 8px; 
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-bottom: 20px; /* Отступ снизу */
+    margin-bottom: 20px; 
 }
 
 .admin-add-product-button:hover {
-    background-color: #FF9B9B; /* Чуть темнее розовый при наведении */
-    transform: scale(1.02); /* Легкое увеличение кнопки при наведении */
+    background-color: #FF9B9B; 
+    transform: scale(1.02);
 }
 
 .admin-add-product-button:active {
-    background-color: #FF6F6F; /* Более насыщенный розовый при нажатии */
+    background-color: #FF6F6F;
 }
 
-/* Сетка для отображения продуктов */
 .admin-product-grid {
     display: flex;
     flex-wrap: wrap;
@@ -37,101 +32,96 @@
     gap: 20px;
 }
 
-/* Карточка товара */
 .admin-product-card {
-    width: 320px; /* Увеличенная ширина карточки */
-    border: 3px solid #FFDEE1; /* Нежная розовая граница */
-    border-radius: 12px; /* Закругленные углы */
-    padding: 20px; /* Внутренний отступ */
+    width: 320px; 
+    border: 3px solid #FFDEE1;
+    border-radius: 12px; 
+    padding: 20px; 
     text-align: left;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Тень */
-    background-color: #FFFFFF; /* Белый цвет фона карточки */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавный переход */
-    position: relative; /* Для позиционирования кнопок */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
+    background-color: #FFFFFF; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    position: relative;
     display: flex;
-    flex-direction: column; /* Выравнивание содержимого по колонке */
+    flex-direction: column;
 }
 
 .admin-product-card:hover {
-    transform: scale(1.05); /* Легкое увеличение при наведении */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); /* Более глубокая тень при наведении */
+    transform: scale(1.05); 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* Изображение товара */
 .admin-product-image {
     width: 100%;
-    height: 250px; /* Увеличенная высота изображения */
-    object-fit: contain; /* Сохранение пропорций изображения */
+    height: 250px; 
+    object-fit: contain;
     border-radius: 8px;
-    background-color: #F9F9F9; /* Цвет фона для изображений, если они меньше */
+    background-color: #F9F9F9; 
 }
 
-/* Детали товара */
 .admin-product-details {
     margin-top: 15px;
-    flex: 1; /* Растягиваем детали на доступное пространство */
+    flex: 1; 
 }
 
 .admin-product-details h2 {
-    font-size: 20px; /* Размер шрифта заголовка */
+    font-size: 20px;
     margin: 0 0 10px 0;
-    color: #FFB6C1; /* Нежный розовый цвет заголовка */
-    text-align: left; /* Выровнять заголовок по левому краю */
+    color: #FFB6C1; 
+    text-align: left; 
 }
 
 .admin-product-price {
-    font-size: 24px; /* Размер шрифта для цены */
+    font-size: 24px; 
     font-weight: bold;
-    color: #FFB6C1; /* Светло-розовый цвет для цены */
+    color: #FFB6C1; 
     margin: 10px 0;
 }
 
-/* Контейнер для кнопок внутри карточки товара */
 .admin-button-container {
     display: flex;
-    gap: 10px;  /* Расстояние между кнопками */
+    gap: 10px;  
     margin-top: 10px;
-    justify-content: center;  /* Центрируем кнопки по горизонтали */
+    justify-content: center;  
 }
 
-/* Кнопка редактирования товара */
 .admin-edit-button, .admin-delete-button {
-    width: 120px; /* Фиксированная ширина кнопок */
-    height: 40px; /* Фиксированная высота кнопок */
+    width: 120px;
+    height: 40px; 
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0; /* Убираем внутренние отступы, чтобы кнопки были одинакового размера */
+    padding: 0; 
     font-size: 16px;
-    color: #FFFFFF; /* Белый цвет текста кнопок */
+    color: #FFFFFF; 
     border: none;
-    border-radius: 8px; /* Закругленные углы кнопок */
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .admin-edit-button {
-    background-color: #FFB6C1; /* Нежно-розовый фон для кнопки редактирования */
+    background-color: #FFB6C1; 
 }
 
 .admin-edit-button:hover {
-    background-color: #FF9B9B; /* Чуть темнее розовый при наведении */
-    transform: scale(1.02); /* Легкое увеличение кнопки при наведении */
+    background-color: #FF9B9B; 
+    transform: scale(1.02); 
 }
 
 .admin-edit-button:active {
-    background-color: #FF6F6F; /* Более насыщенный розовый при нажатии */
+    background-color: #FF6F6F; 
 }
 
 .admin-delete-button {
-    background-color: #FF6F6F; /* Насыщенный розовый фон для кнопки удаления */
+    background-color: #FF6F6F; 
 }
 
 .admin-delete-button:hover {
-    background-color: #FF4D4D; /* Чуть темнее розовый при наведении */
-    transform: scale(1.02); /* Легкое увеличение кнопки при наведении */
+    background-color: #FF4D4D; 
+    transform: scale(1.02); 
 }
 
 .admin-delete-button:active {
-    background-color: #FF2D2D; /* Более насыщенный розовый при нажатии */
+    background-color: #FF2D2D; 
 }

@@ -39,7 +39,7 @@ namespace AToyStore.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")] // Only for admins
+        [Authorize(Roles = "Admin")] 
         public async Task<IActionResult> GetAll()
         {
             var orders = await _orderService.GetAllAsync();
@@ -68,7 +68,6 @@ namespace AToyStore.API.Controllers
 
             var orderId = await _orderService.AddAsync(order);
 
-            // Create detailed message for the email
             var subject = "Новый заказ";
             var message = CreateOrderDetailsMessage(order, orderId);
             await _emailService.SendEmailAsync("sergei05037@gmail.com", subject, message);  
@@ -86,7 +85,6 @@ namespace AToyStore.API.Controllers
                 return NotFound();
             }
 
-            // Update order properties
             order.UpdateOrder(
                 request.CustomerName,
                 request.CustomerPhone,

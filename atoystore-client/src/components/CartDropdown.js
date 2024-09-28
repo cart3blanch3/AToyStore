@@ -1,14 +1,14 @@
 import React, { useContext, useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CartContext } from '../contexts/CartContext'; // Импортируем CartContext
-import { useAuthContext } from '../contexts/AuthContext'; // Импортируем AuthContext
+import { CartContext } from '../contexts/CartContext'; 
+import { useAuthContext } from '../contexts/AuthContext'; 
 import './CartDropdown.css'; 
 
 const API_BASE_URL = 'http://localhost:5253'; 
 
 const CartDropdown = () => {
-    const { cartItems, handleRemoveCartItem } = useContext(CartContext); // Получаем корзину и функции
-    const { isAuthenticated } = useAuthContext(); // Получаем состояние авторизации
+    const { cartItems, handleRemoveCartItem } = useContext(CartContext); 
+    const { isAuthenticated } = useAuthContext(); 
     const [isOpen, setIsOpen] = useState(false);
     const cartRef = useRef();
 

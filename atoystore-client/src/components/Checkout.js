@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createOrder } from '../services/orderService';
 import { useAuth } from '../hooks/useAuth';
 import { getCartItems, updateCartItemQuantity, removeCartItem, clearCart } from '../services/cartService';
+import InputMask from 'react-input-mask';
 import './Checkout.css';
 
 const API_BASE_URL = 'http://localhost:5253';
@@ -14,11 +15,11 @@ const Checkout = () => {
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
     const [cartItems, setCartItems] = useState([]);
-    const { userId } = useAuth(); // Получаем userId из useAuth
+    const { userId } = useAuth();
 
     useEffect(() => {
         const fetchCartItems = () => {
-            const items = getCartItems(); // Получаем товары из localStorage
+            const items = getCartItems();
             setCartItems(items);
         };
         fetchCartItems();
@@ -29,13 +30,13 @@ const Checkout = () => {
             item.id === id ? { ...item, quantity: newQuantity } : item
         );
         setCartItems(updatedItems);
-        updateCartItemQuantity(id, newQuantity); // Обновляем количество в localStorage
+        updateCartItemQuantity(id, newQuantity);
     };
 
     const handleRemoveItem = (id) => {
         const updatedItems = cartItems.filter(item => item.id !== id);
         setCartItems(updatedItems);
-        removeCartItem(id); // Удаляем товар из localStorage
+        removeCartItem(id);
     };
 
     const handleSubmit = async (e) => {
@@ -46,27 +47,33 @@ const Checkout = () => {
             return;
         }
 
-        const token = localStorage.getItem('token'); // Получаем токен из localStorage
+        if (cartItems.length === 0) {
+            setError('Корзина пуста. Добавьте товары перед оформлением заказа.');
+            return;
+        }
+
+        const token = localStorage.getItem('token');
 
         const order = {
             customerName,
             customerPhone,
             address,
             comment,
-            userId, // Включаем userId в заказ
+            userId,
             orderItems: cartItems.map(item => ({
                 productId: item.id,
                 productName: item.name,
                 quantity: item.quantity,
-                unitPrice: item.price // Предполагаем, что у вас есть поле price
+                unitPrice: item.price
             }))
         };
 
         try {
-            await createOrder(order, token); // Передаем токен вместе с заказом
-            clearCart(); // Очищаем корзину после успешного оформления заказа
+            await createOrder(order, token);
+            clearCart();
             setSuccessMessage('Ваш заказ был успешно оформлен! В ближайшее время с вами свяжется менеджер.');
-            setCartItems([]); // Очищаем состояние корзины
+            setCartItems([]);
+            setError(null);  // Clear any previous errors on successful order
         } catch (err) {
             setError('Ошибка при оформлении заказа.');
         }
@@ -98,7 +105,7 @@ const Checkout = () => {
                     <tbody>
                         {cartItems.map(item => (
                             <tr key={item.id}>
-                                <td><img 
+                                <td><img
                                     src={`${API_BASE_URL}${item.imageUrl}`}
                                     alt={item.name}
                                     className="cart-item-image"
@@ -133,14 +140,15 @@ const Checkout = () => {
                         id="customerName"
                         value={customerName}
                         onChange={(e) => setCustomerName(e.target.value)}
+                        maxLength="100" // Limit name to 100 characters
                         required
                     />
                 </div>
                 <div>
                     <label htmlFor="customerPhone">Телефон:</label>
-                    <input
-                        type="tel"
-                        id="customerPhone"
+                    <InputMask
+                        mask="+7 (999) 999-99-99"
+                        placeholder="+7 (7XX) XXX-XX-XX"
                         value={customerPhone}
                         onChange={(e) => setCustomerPhone(e.target.value)}
                         required
@@ -153,6 +161,7 @@ const Checkout = () => {
                         id="address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
+                        maxLength="200" // Limit address to 200 characters
                         required
                     />
                 </div>
@@ -162,14 +171,15 @@ const Checkout = () => {
                         id="comment"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
+                        maxLength="500" // Limit comment to 500 characters
                     />
                 </div>
-                {error && <p>{error}</p>}
-                {successMessage && <p>{successMessage}</p>}
-                <button type="submit">Оформить заказ</button>
+                {error && <p className="error-message">{error}</p>}
+                {successMessage && <p className="success-message">{successMessage}</p>}
+                <button type="submit" disabled={cartItems.length === 0}>Оформить заказ</button>
             </form>
         </div>
     );
-};
+};  
 
 export default Checkout;

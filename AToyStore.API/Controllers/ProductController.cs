@@ -57,7 +57,6 @@ namespace AToyStore.API.Controllers
 
             string imageUrl = null; 
 
-            // Путь к каталогу для сохранения изображений
             var imagePath = Path.Combine(_hostingEnvironment.WebRootPath, "images");
             if (request.Image != null && request.Image.Length > 0)
             {
@@ -78,8 +77,8 @@ namespace AToyStore.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")] 
-        public async Task<IActionResult> Update(Guid id, [FromBody] ProductUpdateDto request)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Update(Guid id, [FromForm] ProductUpdateDto request)
         {
             var existingProduct = await _productService.GetByIdAsync(id);
             if (existingProduct == null)
@@ -87,8 +86,25 @@ namespace AToyStore.API.Controllers
                 return NotFound();
             }
 
-            var product = _mapper.Map<Product>(request);
-            await _productService.UpdateAsync(id, product);
+            string imageUrl = existingProduct.ImageUrl;
+
+            var imagePath = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+            if (request.Image != null && request.Image.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(request.Image.FileName);
+                var filePath = Path.Combine(imagePath, fileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await request.Image.CopyToAsync(fileStream);
+                }
+
+                imageUrl = "/images/" + fileName;
+            }
+
+            existingProduct.UpdateProductInfo(request.Name, request.Description, request.Price, imageUrl);
+
+            await _productService.UpdateAsync(id, existingProduct);
+
             return NoContent();
         }
 

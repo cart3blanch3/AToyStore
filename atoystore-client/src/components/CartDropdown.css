@@ -4,10 +4,10 @@
 }
 
 .cart-icon {
-    color: #fff; /* Белый цвет иконки */
+    color: #fff; 
     background: none;
     border: none;
-    font-size: 24px; /* Размер иконки */
+    font-size: 24px; 
     cursor: pointer;
     position: relative;
 }
@@ -74,34 +74,34 @@
 }
 
 .remove-button {
-    background: #FFB6C1 !important; /* Нежно-розовый фон кнопки удаления */
-    color: #FFFFFF !important; /* Белый цвет текста кнопки удаления */
+    background: #FFB6C1 !important; 
+    color: #FFFFFF !important;
     border: none;
     cursor: pointer;
     padding: 5px 10px;
-    border-radius: 4px; /* Скругленные углы для кнопки удаления */
-    font-size: 14px; /* Размер текста кнопки удаления */
-    margin-left: 10px; /* Отступ слева для кнопки удаления */
+    border-radius: 4px; 
+    font-size: 14px; 
+    margin-left: 10px; 
 }
 
 .remove-button:hover {
-    background-color: #FF9B9B !important; /* Тёмно-розовый цвет при наведении */
+    background-color: #FF9B9B !important; 
 }
 
 .checkout-button {
     display: block;
     width: 100%;
     padding: 10px;
-    background-color: #FFB6C1 !important; /* Нежно-розовый фон кнопки оформления заказа */
-    color: #FFFFFF !important; /* Белый цвет текста кнопки оформления заказа */
+    background-color: #FFB6C1 !important; 
+    color: #FFFFFF !important;
     border: none;
     text-align: center;
     cursor: pointer;
     margin-top: 10px;
-    border-radius: 4px; /* Скругленные углы для кнопки оформления заказа */
-    font-size: 16px; /* Размер текста кнопки оформления заказа */
+    border-radius: 4px; 
+    font-size: 16px; 
 }
 
 .checkout-button:hover {
-    background-color: #FF9B9B !important; /* Тёмно-розовый цвет при наведении */
+    background-color: #FF9B9B !important; 
 }

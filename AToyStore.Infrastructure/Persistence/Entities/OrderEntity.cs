@@ -22,7 +22,7 @@ namespace AToyStore.Infrastructure.Persistence.Entities
         public string CustomerName { get; set; }
 
         [Required]
-        [MaxLength(15, ErrorMessage = "Номер телефона не может превышать 15 символов")]
+        [MaxLength(20, ErrorMessage = "Номер телефона не может превышать 15 символов")]
         public string CustomerPhone { get; set; }
 
         [Required]

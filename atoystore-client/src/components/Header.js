@@ -1,19 +1,19 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../contexts/AuthContext'; // Import AuthContext
+import { useAuthContext } from '../contexts/AuthContext'; 
 import Modal from './Modal';
 import Login from './Login';
 import Register from './Register';
 import CartDropdown from './CartDropdown';
 import './Header.css';
-import { CartContext } from '../contexts/CartContext'; // Import CartContext
+import { CartContext } from '../contexts/CartContext'; 
 
 const Header = () => {
-    const { isAuthenticated, isAdmin, setIsAuthenticated, setIsAdmin } = useAuthContext(); // Use context
+    const { isAuthenticated, isAdmin, setIsAuthenticated, setIsAdmin } = useAuthContext(); 
     const navigate = useNavigate();
     const [isLoginOpen, setLoginOpen] = useState(false);
     const [isRegisterOpen, setRegisterOpen] = useState(false);
-    const { cartItems } = useContext(CartContext); // Get cart items
+    const { cartItems } = useContext(CartContext); 
 
     const handleLogout = () => {
         localStorage.removeItem('token');

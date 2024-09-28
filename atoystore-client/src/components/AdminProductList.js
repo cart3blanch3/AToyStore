@@ -39,18 +39,20 @@ const AdminProductList = () => {
         }
     };
 
-    const handleSaveProduct = async (product) => {
-        if (isEditMode) {
-            await updateProduct(product.id, product);
+    const handleSaveProduct = async (formData, productId) => {
+        if (isEditMode && productId) {
+            await updateProduct(productId, formData);
+            const updatedProducts = products.map(p => p.id === productId ? { ...p, ...formData } : p);
+            setProducts(updatedProducts);
         } else {
-            const newProduct = await createProduct(product);
-            setProducts([...products, newProduct]); 
+            const newProduct = await createProduct(formData);
+            setProducts([...products, newProduct]);
         }
-        setIsModalOpen(false); 
+        setIsModalOpen(false);
     };
 
     const handleCloseModal = () => {
-        setIsModalOpen(false); 
+        setIsModalOpen(false);
     };
 
     return (

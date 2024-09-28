@@ -1,6 +1,6 @@
 .header {
-    background-color: #FFB6C1; /* Light pink background */
-    color: #fff; /* White text */
+    background-color: #FFB6C1; 
+    color: #fff; 
     padding: 10px 20px;
 }
 
@@ -8,14 +8,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%; /* Ensure navbar takes full width */
+    width: 100%; 
 }
 
 .logo {
-    font-size: 36px; /* Larger font size for the logo */
+    font-size: 36px; 
     font-weight: bold;
-    color: #fff; /* White text for the logo */
-    margin-left: 20px; /* Left margin to create space between logo and other items */
+    color: #fff; 
+    margin-left: 20px; 
 }
 
 .nav-list {
@@ -23,20 +23,20 @@
     margin: 0;
     padding: 0;
     display: flex;
-    align-items: center; /* Align items vertically */
+    align-items: center; 
 }
 
 .nav-item {
     margin-left: 20px;
-    display: flex; /* Ensure items inside nav-item are centered */
-    align-items: center; /* Align items vertically within nav-item */
+    display: flex; 
+    align-items: center; 
 }
 
 .nav-item a, .nav-item button {
-    color: #fff; /* White text */
+    color: #fff;
     text-decoration: none;
-    font-size: 16px; /* Set font size for navigation items */
-    font-family: 'Roboto', sans-serif; /* Set font family for navigation items */
+    font-size: 16px; 
+    font-family: 'Roboto', sans-serif; 
     font-weight: normal;
     border: none;
     background: none;
@@ -46,7 +46,6 @@
     cursor: pointer;
 }
 
-/* Optional: Add some styling to ensure consistency across all text */
 body {
-    font-family: 'Roboto', sans-serif; /* Ensure Roboto is used throughout the page */
+    font-family: 'Roboto', sans-serif; 
 }

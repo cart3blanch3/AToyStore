@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { deleteOrder, updateOrder } from '../services/orderService';
-import Modal from './Modal'; // Подключаем компонент модального окна
-import OrderForm from './OrderForm'; // Предполагается, что у вас есть форма для редактирования заказов
+import Modal from './Modal'; 
+import OrderForm from './OrderForm'; 
 
 const AdminOrders = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [selectedOrder, setSelectedOrder] = useState(null); // Для выбранного заказа
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // Модальное окно для удаления
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false); // Модальное окно для редактирования
+    const [selectedOrder, setSelectedOrder] = useState(null); 
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); 
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false); 
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -40,12 +40,12 @@ const AdminOrders = () => {
         const token = localStorage.getItem('token');
         try {
             await deleteOrder(selectedOrder.id, token);
-            setOrders(orders.filter(order => order.id !== selectedOrder.id)); // Удаляем заказ из списка
+            setOrders(orders.filter(order => order.id !== selectedOrder.id)); 
         } catch (error) {
             alert('Ошибка при удалении заказа.');
         } finally {
-            setIsDeleteModalOpen(false); // Закрываем модальное окно
-            setSelectedOrder(null); // Сбрасываем выбранный заказ
+            setIsDeleteModalOpen(false); 
+            setSelectedOrder(null); 
         }
     };
 
@@ -56,7 +56,7 @@ const AdminOrders = () => {
 
     const handleCloseDeleteModal = () => {
         setIsDeleteModalOpen(false);
-        setSelectedOrder(null); // Сбрасываем выбранный заказ
+        setSelectedOrder(null); 
     };
 
     const handleEditOrder = (order) => {
@@ -67,18 +67,17 @@ const AdminOrders = () => {
     const handleSaveOrder = async (updatedOrder) => {
         try {
             await updateOrder(updatedOrder.id, updatedOrder);
-            setOrders(orders.map(order => (order.id === updatedOrder.id ? updatedOrder : order))); // Обновляем список заказов
+            setOrders(orders.map(order => (order.id === updatedOrder.id ? updatedOrder : order))); 
         } catch (error) {
-            alert('Ошибка при обновлении заказа.');
         } finally {
-            setIsEditModalOpen(false); // Закрываем модальное окно
-            setSelectedOrder(null); // Сбрасываем выбранный заказ
+            setIsEditModalOpen(false); 
+            setSelectedOrder(null); 
         }
     };
 
     const handleCloseEditModal = () => {
         setIsEditModalOpen(false);
-        setSelectedOrder(null); // Сбрасываем выбранный заказ
+        setSelectedOrder(null); 
     };
 
     return (
@@ -132,7 +131,6 @@ const AdminOrders = () => {
                 </table>
             )}
 
-            {/* Модальное окно подтверждения удаления */}
             <Modal isOpen={isDeleteModalOpen} onClose={handleCloseDeleteModal}>
                 <h2>Подтверждение удаления</h2>
                 <p>Вы уверены, что хотите удалить заказ ID {selectedOrder?.id}?</p>
@@ -140,7 +138,6 @@ const AdminOrders = () => {
                 <button onClick={handleCloseDeleteModal}>Нет</button>
             </Modal>
 
-            {/* Модальное окно для редактирования заказа */}
             <Modal isOpen={isEditModalOpen} onClose={handleCloseEditModal}>
                 <h2>Редактировать заказ ID {selectedOrder?.id}</h2>
                 <OrderForm order={selectedOrder} onSave={handleSaveOrder} />

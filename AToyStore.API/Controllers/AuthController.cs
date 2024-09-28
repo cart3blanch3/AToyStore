@@ -69,15 +69,20 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterModel model)
     {
+        var existingUser = await _userManager.FindByEmailAsync(model.Email);
+        if (existingUser != null)
+        {
+            return BadRequest(new { error = "Пользователь с таким email уже существует." });
+        }
+
         var user = new IdentityUser
         {
             UserName = model.Email,
             Email = model.Email,
-            PhoneNumber = model.PhoneNumber 
+            PhoneNumber = model.PhoneNumber
         };
 
         var result = await _userManager.CreateAsync(user, model.Password);
-
         if (result.Succeeded)
         {
             await _userManager.AddToRoleAsync(user, "User");

@@ -1,58 +1,64 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../services/authService'; // Import login service
-import { jwtDecode } from 'jwt-decode'; // Import jwtDecode to decode the token
-import Modal from './Modal'; // Import Modal component
-import Register from './Register'; // Import Register component
-import './Login.css'; // Import custom CSS for styling
-import { useAuthContext } from '../contexts/AuthContext'; // Import AuthContext
+import { loginUser } from '../services/authService';
+import { jwtDecode } from 'jwt-decode';
+import Modal from './Modal';
+import Register from './Register';
+import './Login.css';
+import { useAuthContext } from '../contexts/AuthContext';
 
 const Login = ({ onLoginSuccess }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false); // State for register modal
-    const [isLoginVisible, setIsLoginVisible] = useState(true); // State for login visibility
+    const [errorMessage, setErrorMessage] = useState('');
+    const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+    const [isLoginVisible, setIsLoginVisible] = useState(true);
     const navigate = useNavigate();
     const { setIsAuthenticated, setIsAdmin } = useAuthContext();
 
     const handleLogin = async () => {
-        try {
-            const token = await loginUser({ email, password }); // Login logic
-            localStorage.setItem('token', token); // Save token to localStorage
+        if (!email.trim() || !password.trim()) {
+            setErrorMessage('Email и пароль не должны быть пустыми.');
+            return; 
+        }
 
-            // Decode token to check role
+        try {
+            const token = await loginUser({ email, password });
+            localStorage.setItem('token', token);
+
             const decodedToken = jwtDecode(token);
             const role = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
 
             setIsAuthenticated(true);
             setIsAdmin(role === 'Admin');
 
-            // Redirect based on role
             if (role === 'Admin') {
-                navigate('/admin'); // Redirect to admin page
+                navigate('/admin');
             } else {
-                navigate('/'); // Redirect to home page
+                navigate('/');
             }
 
-            if (onLoginSuccess) onLoginSuccess(); // Notify parent component of successful login
+            if (onLoginSuccess) onLoginSuccess();
+            setErrorMessage(''); 
         } catch (error) {
             console.error('Login error', error);
+            setErrorMessage('Ошибка входа. Проверьте свои учетные данные.');
         }
     };
 
     const openRegisterModal = () => {
-        setIsLoginVisible(false); // Hide login form
-        setIsRegisterModalOpen(true); // Open registration modal
+        setIsLoginVisible(false);
+        setIsRegisterModalOpen(true);
     };
 
     const closeRegisterModal = () => {
-        setIsRegisterModalOpen(false); // Close registration modal
-        setIsLoginVisible(true); // Show login form again
+        setIsRegisterModalOpen(false);
+        setIsLoginVisible(true);
     };
 
     return (
         <div className="login-container">
-            {isLoginVisible && ( // Conditional rendering of login form
+            {isLoginVisible && (
                 <>
                     <h2>Вход</h2>
                     <input
@@ -61,6 +67,8 @@ const Login = ({ onLoginSuccess }) => {
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Имя пользователя"
                         className="login-input"
+                        maxLength="50"
+                        required
                     />
                     <input
                         type="password"
@@ -68,13 +76,13 @@ const Login = ({ onLoginSuccess }) => {
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Пароль"
                         className="login-input"
+                        maxLength="50"
+                        required
                     />
                     <button onClick={handleLogin} className="login-button">Войти</button>
-
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
                     <p className="register-prompt">Нет аккаунта?</p>
-                    <button 
-                        onClick={openRegisterModal} // Open registration modal
-                        className="register-button">
+                    <button onClick={openRegisterModal} className="register-button">
                         Регистрация
                     </button>
                 </>

@@ -8,12 +8,12 @@ body {
 
 h1 {
     text-align: center;
-    color: #FF8C8C; /* Soft pink color for headings */
+    color: #FF8C8C; 
     margin-top: 20px;
 }
 
 h2, h3 {
-    color: #FF8C8C; /* Soft pink color for subheadings */
+    color: #FF8C8C; 
 }
 
 table {
@@ -30,12 +30,12 @@ table th, table td {
 }
 
 table th {
-    background-color: #FF8C8C; /* Soft pink color for table headers */
-    color: #fff; /* White text for table headers */
+    background-color: #FF8C8C;
+    color: #fff; 
 }
 
 table td {
-    color: #FFB6C1; /* Light pink color for table cell text */
+    color: #FFB6C1; 
 }
 
 table tr:nth-child(even) {
@@ -64,13 +64,13 @@ form label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
-    color: #FFB6C1; /* Light pink color for form labels */
+    color: #FFB6C1; 
 }
 
 form input, form textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #FF8C8C; /* Soft pink color for form borders */
+    border: 1px solid #FF8C8C; 
     border-radius: 4px;
 }
 
@@ -80,7 +80,7 @@ form textarea {
 }
 
 form button {
-    background-color: #FFB6C1; /* Light pink color for buttons */
+    background-color: #FFB6C1; 
     color: #fff;
     border: none;
     padding: 10px 15px;
@@ -91,37 +91,34 @@ form button {
 }
 
 form button:hover {
-    background-color: #FF8C8C; /* Soft pink color for button hover effect */
+    background-color: #FF8C8C; 
 }
 
 .error-message {
-    color: #FF4C4C; /* Red color for error messages */
+    color: #FF4C4C;
     font-weight: bold;
     text-align: center;
     margin-top: 10px;
 }
 
-/* Стиль для кнопки удаления */
 .delete-button {
     width: 40%;
-    margin-top: auto; /* Отодвигаем кнопку вниз */
-    padding: 12px 0; /* Увеличиваем отступы */
-    font-size: 16px; /* Размер шрифта */
-    color: #FFFFFF; /* Белый цвет текста кнопки */
-    background-color: #FFB6C1; /* Нежно-розовый фон кнопки */
-    border: none; /* Без границ */
-    border-radius: 8px; /* Закругленные углы кнопки */
-    cursor: pointer; /* Указатель в виде руки */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Плавный переход цвета фона и эффекта увеличения */
+    margin-top: auto; 
+    padding: 12px 0; 
+    font-size: 16px;
+    color: #FFFFFF; 
+    background-color: #FFB6C1; 
+    border: none; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, transform 0.2s ease; 
 }
 
-/* Состояние наведения для кнопки удаления */
 .delete-button:hover {
-    background-color: #FF9B9B; /* Чуть темнее розовый при наведении */
-    transform: scale(1.02); /* Легкое увеличение кнопки при наведении */
+    background-color: #FF9B9B; 
+    transform: scale(1.02); 
 }
 
-/* Состояние нажатия для кнопки удаления */
 .delete-button:active {
-    background-color: #FF6F6F; /* Более насыщенный розовый при нажатии */
+    background-color: #FF6F6F; 
 }
